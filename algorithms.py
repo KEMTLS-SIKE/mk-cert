@@ -72,8 +72,8 @@ kems = [
         for size in ("434", "503", "610", "751")
         for compressed in ("", "compressed")
     ],
-    ("bikel1fo", "BikeL1Fo"),
-    ("bikel3fo", "BikeL3Fo"),
+    ("bikel1", "BikeL1"),
+    ("bikel3", "BikeL3"),
     *[(f"hqc{size}", f"Hqc{size}") for size in ["128", "192", "256"]],
 ]
 
