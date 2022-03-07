@@ -31,11 +31,11 @@ signs = [
 ]
 
 kems = [
-    ("kyber512", "Kyber512"),
-    ("kyber768", "Kyber768"),
-    ("kyber1024", "Kyber1024"),
+    ("kyber512", "Kyber512", False),
+    ("kyber768", "Kyber768", False),
+    ("kyber1024", "Kyber1024", False),
     *[
-        (f"classicmceliece{size}", f"ClassicMcEliece{size}")
+        (f"classicmceliece{size}", f"ClassicMcEliece{size}", False)
         for size in (
             "348864",
             "348864f",
@@ -49,36 +49,36 @@ kems = [
             "8192128f",
         )
     ],
-    ("lightsaber", "Lightsaber"),
-    ("saber", "Saber"),
-    ("firesaber", "Firesaber"),
-    ("ntruhps2048509", "NtruHps2048509"),
-    ("ntruhps2048677", "NtruHps2048677"),
-    ("ntruhps4096821", "NtruHps4096821"),
-    ("ntruhrss701", "NtruHrss701"),
-    ("ntruprimentrulpr653", "NtruPrimeNtrulpr653"),
-    ("ntruprimentrulpr761", "NtruPrimeNtrulpr761"),
-    ("ntruprimentrulpr857", "NtruPrimeNtrulpr857"),
-    ("ntruprimesntrup653",  "NtruPrimeSntrup653"),
-    ("ntruprimesntrup761",  "NtruPrimeSntrup761"),
-    ("ntruprimesntrup857",  "NtruPrimeSntrup857"),
+    ("lightsaber", "Lightsaber", False),
+    ("saber", "Saber", False),
+    ("firesaber", "Firesaber", False),
+    ("ntruhps2048509", "NtruHps2048509", False),
+    ("ntruhps2048677", "NtruHps2048677", False),
+    ("ntruhps4096821", "NtruHps4096821", False),
+    ("ntruhrss701", "NtruHrss701", False),
+    ("ntruprimentrulpr653", "NtruPrimeNtrulpr653", False),
+    ("ntruprimentrulpr761", "NtruPrimeNtrulpr761", False),
+    ("ntruprimentrulpr857", "NtruPrimeNtrulpr857", False),
+    ("ntruprimesntrup653",  "NtruPrimeSntrup653", False),
+    ("ntruprimesntrup761",  "NtruPrimeSntrup761", False),
+    ("ntruprimesntrup857",  "NtruPrimeSntrup857", False),
     *[
-        (f"frodokem{size}{alg}", f"FrodoKem{size.title()}{alg.title()}")
+        (f"frodokem{size}{alg}", f"FrodoKem{size.title()}{alg.title()}", False)
         for size in ("640", "976", "1344")
         for alg in ("aes", "shake")
     ],
     *[
-        (f"sikep{size}{compressed}", f"SikeP{size}{compressed.title()}")
+        (f"sikep{size}{compressed}{'async' if asynchronous else ''}", f"SikeP{size}{compressed.title()}", asynchronous)
         for size in ("434", "503", "610", "751")
-        for compressed in ("", "compressed")
+        for (compressed, asynchronous) in (("", False), ("compressed", False), ("compressed", True))
     ],
-    ("bikel1", "BikeL1"),
-    ("bikel3", "BikeL3"),
-    *[(f"hqc{size}", f"Hqc{size}") for size in ["128", "192", "256"]],
+    ("bikel1", "BikeL1", False),
+    ("bikel3", "BikeL3", False),
+    *[(f"hqc{size}", f"Hqc{size}", False) for size in ["128", "192", "256"]],
 ]
 
 
-oids = {var: i for (i, (var, _)) in enumerate(itertools.chain(signs, kems), start=1)}
+oids = {definition[0]: i for (i, definition) in enumerate(itertools.chain(signs, kems), start=1)}
 
 
 def get_oid(algorithm):
