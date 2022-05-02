@@ -68,9 +68,9 @@ kems = [
         for alg in ("aes", "shake")
     ],
     *[
-        (f"sikep{size}{compressed}", f"SikeP{size}{compressed.title()}")
+        (f"sikep{size}{compressed}{onecca.lower()}", f"SikeP{size}{compressed.title()}{onecca}")
         for size in ("434", "503", "610", "751")
-        for compressed in ("", "compressed")
+        for compressed, onecca in (("", ""), ("compressed", ""), ("compressed", "1CCA"))
     ],
     ("bikel1", "BikeL1"),
     ("bikel3", "BikeL3"),
