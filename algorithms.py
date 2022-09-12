@@ -63,9 +63,10 @@ kems = [
     ("ntruprimesntrup761",  "NtruPrimeSntrup761"),
     ("ntruprimesntrup857",  "NtruPrimeSntrup857"),
     *[
-        (f"frodokem{size}{alg}", f"FrodoKem{size.title()}{alg.title()}")
+        (f"frodokem{size}{alg}{onecca}", f"FrodoKem{size.title()}{alg.title()}{onecca}")
         for size in ("640", "976", "1344")
         for alg in ("aes", "shake")
+        for onecca in ("", "1CCA")
     ],
     *[
         (f"sikep{size}{compressed}{onecca.lower()}", f"SikeP{size}{compressed.title()}{onecca}")
