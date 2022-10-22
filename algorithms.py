@@ -74,6 +74,7 @@ kems = [
         for compressed, onecca in (("", ""), ("compressed", ""), ("compressed", "1CCA"))
     ],
     ("csidhp512", "CsidhP512"),
+    ("csidhp1024", "CsidhP1024"),
     ("bikel1", "BikeL1"),
     ("bikel3", "BikeL3"),
     *[(f"hqc{size}", f"Hqc{size}") for size in ["128", "192", "256"]],
